@@ -1,11 +1,14 @@
-package com.sis.com.model;
+package com.sis.com.business.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /***
  * 
@@ -14,18 +17,30 @@ import javax.persistence.Id;
  * 
  */
 @Entity
-public abstract class Pessoa implements Comparable<Pessoa> {
+@Table(name = "pessoa")
+public class Pessoa implements Comparable<Pessoa>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int codigo;
+	private Long codigo;
+	@Column(name="nome", nullable = false)
 	private String nome;
+	@Column(name="telefones", nullable = true)
 	private String telefones;
+	@Column(name="email", nullable = true)
 	private String email;
+	@Column(name="dataCad", nullable = false)
 	private Date dataCad;
 	
-	public Pessoa(int codigo, String nome, String telefones, String email
-			, Date dataCad) {
-		super();
+	public Pessoa() {
+		
+	}
+	
+	public Pessoa(Long codigo, String nome, String telefones, String email, Date dataCad) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.telefones = telefones;
@@ -33,10 +48,10 @@ public abstract class Pessoa implements Comparable<Pessoa> {
 		this.dataCad = dataCad;
 	}
 
-	public int getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -78,7 +93,7 @@ public abstract class Pessoa implements Comparable<Pessoa> {
 		return 0;
 	}
 	
-	public abstract Pessoa retornaTipoPessoa();
+	//public abstract Pessoa retornaTipoPessoa();
 
 	public String toString() {
 		return "Pessoa [codigo=" + codigo + ", nome=" + nome + ", telefones=" 

@@ -1,4 +1,4 @@
-package com.sis.com.model;
+package com.sis.com.business.model;
 
 import java.util.ArrayList;
 import java.util.Date;

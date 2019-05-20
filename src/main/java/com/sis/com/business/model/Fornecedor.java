@@ -1,12 +1,17 @@
-package com.sis.com.model;
+package com.sis.com.business.model;
 
 import java.util.Date;
 
 public class Fornecedor extends Pessoa {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String cnpj;
 	private String nomeContato;
 
-	public Fornecedor(int codigo, String nome, String telefones, String email, Date dataCad, String cnpj,
+	public Fornecedor(Long codigo, String nome, String telefones, String email, Date dataCad, String cnpj,
 			String nomeContato) {
 		super(codigo, nome, telefones, email, dataCad);
 		this.cnpj = cnpj;

@@ -1,12 +1,17 @@
-package com.sis.com.model;
+package com.sis.com.business.model;
 
 import java.util.Date;
 
 public class Cliente extends Pessoa {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String cpf;
 	private double limiteCredito;
 	
-	public Cliente(int codigo, String nome, String telefones, String email,
+	public Cliente(Long codigo, String nome, String telefones, String email,
 			Date dataCad, String cpf, double limiteCredito) {
 		super(codigo, nome, telefones, email, dataCad);
 		this.cpf = cpf;
@@ -40,6 +45,5 @@ public class Cliente extends Pessoa {
 	public Pessoa retornaTipoPessoa() {
 		return null;
 	}
-	
 	
 }

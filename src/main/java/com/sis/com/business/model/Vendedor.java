@@ -1,12 +1,17 @@
-package com.sis.com.model;
+package com.sis.com.business.model;
 
 import java.util.Date;
 
 public class Vendedor extends Pessoa {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String cpf;
 	private double metaMensal;
 	
-	public Vendedor(int codigo, String nome, String telefones, String email, Date dataCad, String cpf,
+	public Vendedor(Long codigo, String nome, String telefones, String email, Date dataCad, String cpf,
 			double metaMensal) {
 		super(codigo, nome, telefones, email, dataCad);
 		this.cpf = cpf;

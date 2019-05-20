@@ -1,4 +1,4 @@
-package com.sis.com.model;
+package com.sis.com.business.model;
 
 public class ItemVenda {
 	private Produto produto;

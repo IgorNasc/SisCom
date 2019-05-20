@@ -28,7 +28,8 @@ public class Pessoa implements Comparable<Pessoa>, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="codigo")
 	private Long codigo;
 	@Column(name="nome", nullable = false)
 	private String nome;
@@ -36,7 +37,7 @@ public class Pessoa implements Comparable<Pessoa>, Serializable {
 	private String telefones;
 	@Column(name="email", nullable = true)
 	private String email;
-	@Column(name="dataCad", nullable = false)
+	@Column(name="dataCad", nullable = true)
 	private Date dataCad;
 	
 	public Pessoa() {

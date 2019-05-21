@@ -2,14 +2,29 @@ package com.sis.com.business.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cliente")
 public class Cliente extends Pessoa {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	// Columns
+	@Column(name = "cpf", nullable = false)
 	private String cpf;
+
+	@Column(name = "limite_credito", nullable = false)
 	private double limiteCredito;
+	
+	// Constructors
+	public Cliente() {
+		
+	}
 	
 	public Cliente(Long codigo, String nome, String telefones, String email,
 			Date dataCad, String cpf, double limiteCredito) {
@@ -18,6 +33,7 @@ public class Cliente extends Pessoa {
 		this.limiteCredito = limiteCredito;
 	}
 
+	// Getters and Setters
 	public String getCpf() {
 		return cpf;
 	}
@@ -32,6 +48,7 @@ public class Cliente extends Pessoa {
 		this.limiteCredito = limiteCredito;
 	}
 
+	// Extra functions
 	public String toString() {
 		return super.toString() + "Cliente [cpf=" + cpf + ", limiteCredito=" + limiteCredito + "]";
 	}

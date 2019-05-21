@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sis.com.business.model.Fornecedor;
 import com.sis.com.business.service.FornecedorService;
+import com.sis.com.system.SisComException;
 
 @CrossOrigin
 @RestController
@@ -38,10 +39,15 @@ public class FornecedorRestController {
 		
 		try {
 			fornecedorService.cadastrar(restInput.getEntity());
+			restOutput.setStatus(201);
+		} catch (SisComException e) {
+			restOutput.addWarn(e.getMenssagemErro());
+			restOutput.setStatus(409);
 		} catch (Exception e) {
 			e.printStackTrace();
+			restOutput.setStatus(500);
 		}
-		System.out.println("End Cadastrar fornecedor!");
+		
 		return restOutput;
 	}
 }

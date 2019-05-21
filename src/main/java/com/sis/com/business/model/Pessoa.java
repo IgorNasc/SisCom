@@ -27,6 +27,7 @@ public class Pessoa implements Comparable<Pessoa>, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	// Atributos
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="codigo")
@@ -40,6 +41,7 @@ public class Pessoa implements Comparable<Pessoa>, Serializable {
 	@Column(name="dataCad", nullable = true)
 	private Date dataCad;
 	
+	// Constructors
 	public Pessoa() {
 		
 	}
@@ -52,6 +54,7 @@ public class Pessoa implements Comparable<Pessoa>, Serializable {
 		this.dataCad = dataCad;
 	}
 
+	// Getters and Setters
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -87,6 +90,7 @@ public class Pessoa implements Comparable<Pessoa>, Serializable {
 		this.dataCad = dataCad;
 	}
 	
+	// Extra functions
 	public int compareTo(Pessoa pessoa) {
 		if (this.nome.length() < pessoa.nome.length()) {
             return -1;

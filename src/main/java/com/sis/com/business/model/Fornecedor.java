@@ -14,7 +14,7 @@ public class Fornecedor extends Pessoa {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	// Columns
+	// Atributos
 	@Column(name = "cnpj", nullable = false)
 	private String cnpj;
 	@Column(name = "nome_contato", nullable = false)

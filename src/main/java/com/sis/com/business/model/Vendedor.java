@@ -2,14 +2,26 @@ package com.sis.com.business.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "vendedor")
 public class Vendedor extends Pessoa {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Column(name = "cpf", nullable = false)
 	private String cpf;
+	@Column(name = "meta_mensal", nullable = false)
 	private double metaMensal;
+	
+	public Vendedor() {
+		
+	}
 	
 	public Vendedor(Long codigo, String nome, String telefones, String email, Date dataCad, String cpf,
 			double metaMensal) {

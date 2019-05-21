@@ -14,7 +14,7 @@ public class Cliente extends Pessoa {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	// Columns
+	// Atributos
 	@Column(name = "cpf", nullable = false)
 	private String cpf;
 

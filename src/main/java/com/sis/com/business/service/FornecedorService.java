@@ -28,4 +28,8 @@ public class FornecedorService {
 
 		fornecedorRepository.save(fornecedor);
 	}
+	
+	public void delete(Fornecedor fornecedor) throws SisComException{
+		
+	}
 }

@@ -1,21 +1,47 @@
 package com.sis.com.business.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Compra {
-	private int numCompra;
-	private Fornecedor fornecedor;
-	private ArrayList<ItemCompra> compraItens;
-	private Date dataCompra;
-	
-	public Compra(int numCompra,Fornecedor fornecedor,ArrayList<ItemCompra> compraItens,Date dataCompra){super();this.numCompra=numCompra;this.fornecedor=fornecedor;this.compraItens=compraItens;this.dataCompra=dataCompra;}
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	public int getNumCompra() {
-		return numCompra;
+@Entity
+public class Compra implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="codigo")
+	private Long codigo;
+	@Column(name="data_compra")
+	private Date dataCompra;
+	@Column(name="codigo_fornecedor")
+	private Fornecedor fornecedor;
+	
+	public Compra() {
+		
 	}
-	public void setNumCompra(int numCompra) {
-		this.numCompra = numCompra;
+	
+	public Compra(Long numCompra,Fornecedor fornecedor,ArrayList<ItemCompra> compraItens,Date dataCompra){
+		this.codigo=numCompra;
+		this.fornecedor=fornecedor;
+		this.dataCompra=dataCompra;
+	}
+
+	public Long getNumCompra() {
+		return codigo;
+	}
+	public void setNumCompra(Long numCompra) {
+		this.codigo = numCompra;
 	}
 
 	public Fornecedor getFornecedor() {
@@ -25,11 +51,6 @@ public class Compra {
 		this.fornecedor = fornecedor;
 	}
 
-	public ArrayList<ItemCompra> getCompraItens() {
-	return compraItens;}
-	public void setCompraItens(ArrayList<ItemCompra> compraItens) {
-	this.compraItens = compraItens;}
-
 	public Date getDataCompra() {
 		return dataCompra;
 	}
@@ -38,7 +59,7 @@ public class Compra {
 	}
 
 	public String toString() {
-		return "Compra [numCompra=" + numCompra + ", fornecedor=" + fornecedor + ", dataCompra=" + dataCompra + "]";
+		return "Compra [codigo=" + codigo + ", fornecedor=" + fornecedor + ", dataCompra=" + dataCompra + "]";
 	}
 	
 }

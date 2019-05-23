@@ -1,16 +1,44 @@
 package com.sis.com.business.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "produto")
 public class Produto implements Comparable<Produto> {
-	private int codigo;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="codigo")
+	private Long codigo;
+	@Column(name="nome")
 	private String nome;
+	@Column(name="preco_unitario")
 	private double precoUnitario;
+	@Column(name="estoque")
 	private int estoque;
+	@Column(name="estoque_minimo")
 	private int estoqueMinimo;
+	@Column(name="data_cad")
 	private Date dataCad;
 	
-	public Produto(int codigo, String nome, double precoUnitario, int estoque, int estoqueMinimo, Date dataCad) {
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+    private List<ItemVenda> vendas;
+	
+	public Produto() {
+		
+	}
+	
+	public Produto(Long codigo, String nome, double precoUnitario, int estoque, int estoqueMinimo, Date dataCad) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -20,11 +48,11 @@ public class Produto implements Comparable<Produto> {
 		this.dataCad = dataCad;
 	}
 
-	public int getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 

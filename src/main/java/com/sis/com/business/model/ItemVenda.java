@@ -1,15 +1,48 @@
 package com.sis.com.business.model;
 
-public class ItemVenda {
-	private Produto produto;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "item_venda")
+public class ItemVenda implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+			
+	@Id
+	@Column(name="codigo")
+	private Long codigo;
+	@Column(name="quant_venda")
 	private int quantVenda;
+	@Column(name="valor_venda")
 	private double valorVenda;
 	
-	public ItemVenda(Produto produto, int quantVenda, double valorVenda) {
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_produto")
+	private Produto produto;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_venda")
+	private Venda venda;
+	
+	public ItemVenda() {
+		
+	}
+	
+	public ItemVenda(Produto produto, int quantVenda, double valorVenda, Venda venda) {
 		super();
 		this.produto = produto;
 		this.quantVenda = quantVenda;
 		this.valorVenda = valorVenda;
+		this.venda = venda;
 	}
 
 	public Produto getProduto() {
@@ -31,6 +64,13 @@ public class ItemVenda {
 	}
 	public void setValorVenda(double valorVenda) {
 		this.valorVenda = valorVenda;
+	}
+
+	public Venda getVenda() {
+		return venda;
+	}
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 
 	public String toString() {

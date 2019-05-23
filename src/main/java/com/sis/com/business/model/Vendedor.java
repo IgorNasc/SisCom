@@ -1,9 +1,12 @@
 package com.sis.com.business.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,13 +21,15 @@ public class Vendedor extends Pessoa {
 	private String cpf;
 	@Column(name = "meta_mensal", nullable = false)
 	private double metaMensal;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vendedor")
+    private List<Venda> vendas;
 	
 	public Vendedor() {
 		
 	}
 	
-	public Vendedor(Long codigo, String nome, String telefones, String email, Date dataCad, String cpf,
-			double metaMensal) {
+	public Vendedor(Long codigo, String nome, String telefones, String email, Date dataCad, String cpf,	double metaMensal) {
 		super(codigo, nome, telefones, email, dataCad);
 		this.cpf = cpf;
 		this.metaMensal = metaMensal;

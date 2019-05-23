@@ -57,7 +57,7 @@ public class FornecedorRestController {
 		RestOutput<Fornecedor> restOutput = new RestOutput<Fornecedor>();
 		
 		try {
-			fornecedorService.cadastrar(restInput.getEntity());
+			fornecedorService.delete(restInput.getEntity());
 			restOutput.setStatus(201);
 		} catch (SisComException e) {
 			restOutput.addWarn(e.getMenssagemErro());

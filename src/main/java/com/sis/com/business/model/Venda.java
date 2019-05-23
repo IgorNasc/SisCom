@@ -1,23 +1,67 @@
 package com.sis.com.business.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class Venda {
-	private int numVenda;
-	private Cliente cliente;
-	private Vendedor vendedor;
-	private ArrayList<ItemVenda> listaVenda;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "venda")
+public class Venda implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="codigo")
+	private Long codigo;
+	@Column(name="forma_pagto")
 	private int formaPagto;
+	@Column(name="data_venda")
 	private Date dataVenda;
 	
-	public Venda(int numVenda,Cliente cliente,Vendedor vendedor,ArrayList<ItemVenda> listaVenda,int formaPagto,Date dataVenda){super();this.numVenda=numVenda;this.cliente=cliente;this.vendedor=vendedor;this.listaVenda=listaVenda;this.formaPagto=formaPagto;this.dataVenda=dataVenda;}
-
-	public int getNumVenda() {
-		return numVenda;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_cliente")
+	private Cliente cliente;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_vendedor")
+	private Vendedor vendedor;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
+	private List<ItemVenda> listaVenda;
+	
+	public Venda() {
+		
 	}
-	public void setNumVenda(int numVenda) {
-		this.numVenda = numVenda;
+	
+	public Venda(Long codigo,Cliente cliente,Vendedor vendedor,ArrayList<ItemVenda> listaVenda,int formaPagto,Date dataVenda) {
+		super();
+		this.codigo=codigo;
+		this.cliente=cliente;
+		this.vendedor=vendedor;
+		this.listaVenda=listaVenda;
+		this.formaPagto=formaPagto;
+		this.dataVenda=dataVenda;
+	}
+
+	public Long getNumVenda() {
+		return codigo;
+	}
+	public void setNumVenda(long codigo) {
+		this.codigo = codigo;
 	}
 
 	public Cliente getCliente() {
@@ -34,8 +78,9 @@ public class Venda {
 		this.vendedor = vendedor;
 	}
 
-	public ArrayList<ItemVenda> getListaVenda() {
-	return listaVenda;}
+	public List<ItemVenda> getListaVenda() {
+		return listaVenda;
+	}
 	public void setListaVenda(ArrayList<ItemVenda> listaVenda) {
 	this.listaVenda = listaVenda;}
 
@@ -54,7 +99,7 @@ public class Venda {
 	}
 
 	public String toString() {
-		return "Venda [numVenda=" + numVenda + ", cliente=" + cliente + ", vendedor=" + vendedor + ", formaPagto="
+		return "Venda [numVenda=" + codigo + ", cliente=" + cliente + ", vendedor=" + vendedor + ", formaPagto="
 				+ formaPagto + ", dataVenda=" + dataVenda + "]";
 	}
 	

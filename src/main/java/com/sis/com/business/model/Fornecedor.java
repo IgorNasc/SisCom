@@ -1,9 +1,12 @@
 package com.sis.com.business.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,8 @@ public class Fornecedor extends Pessoa {
 	private String cnpj;
 	@Column(name = "nome_contato", nullable = false)
 	private String nomeContato;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fornecedor")
+    private List<Compra> compras;
 	
 	// Constructors
 	public Fornecedor() {

@@ -6,11 +6,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "compra")
 public class Compra implements Serializable {
 	
 	/**
@@ -24,7 +29,9 @@ public class Compra implements Serializable {
 	private Long codigo;
 	@Column(name="data_compra")
 	private Date dataCompra;
-	@Column(name="codigo_fornecedor")
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_fornecedor")
 	private Fornecedor fornecedor;
 	
 	public Compra() {

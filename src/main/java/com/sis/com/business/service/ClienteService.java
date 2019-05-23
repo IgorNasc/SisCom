@@ -22,4 +22,15 @@ public class ClienteService {
 		
 		clienteRepository.save(cliente);
 	}
+	
+	public void delete(Cliente cliente) throws SisComException{
+		
+		//Venda checkCompra = compraRepository.findByCodigoFornecedor(fornecedor.getCodigo());
+		
+//		if(checkCompra != null) {
+//			throw new SisComException("Este fornecedor possui compras!");
+//		}
+		
+		clienteRepository.delete(cliente);
+	}
 }

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sis.com.business.model.Cliente;
+import com.sis.com.business.model.Venda;
 import com.sis.com.repository.ClienteRepository;
+import com.sis.com.repository.VendaRepository;
 import com.sis.com.system.SisComException;
 
 @Service
@@ -12,6 +14,9 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private VendaRepository vendaRepository;
 	
 	public void cadastrarCliente(Cliente cliente) throws SisComException {
 		Cliente verificaCliente = clienteRepository.FindByCpf(cliente.getCpf());
@@ -25,11 +30,11 @@ public class ClienteService {
 	
 	public void delete(Cliente cliente) throws SisComException{
 		
-		//Venda checkCompra = compraRepository.findByCodigoFornecedor(fornecedor.getCodigo());
+		Venda checkVenda = vendaRepository.findByCliente(cliente.getCodigo());
 		
-//		if(checkCompra != null) {
-//			throw new SisComException("Este fornecedor possui compras!");
-//		}
+		if(checkVenda != null) {
+			throw new SisComException("Este cliente possui venda!");
+		}
 		
 		clienteRepository.delete(cliente);
 	}

@@ -34,6 +34,9 @@ public class Produto implements Comparable<Produto> {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
     private List<ItemVenda> vendas;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+    private List<ItemCompra> compras;
+	
 	public Produto() {
 		
 	}

@@ -1,9 +1,33 @@
 package com.sis.com.business.model;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 public class ItemCompra {
-	private Produto produto;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="codigo")
+	private int codigo;
+	@Column(name="quant_compra")
 	private int quantCompra;
+	@Column(name="valor_compra")
 	private double valorCompra;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_produto")
+	private Produto produto;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
+	private List<ItemVenda> listaVenda;
 	
 	public ItemCompra(Produto produto, int quantCompra, double valorCompra) {
 		super();

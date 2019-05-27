@@ -3,6 +3,7 @@ package com.sis.com.business.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +35,9 @@ public class Compra implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_fornecedor")
 	private Fornecedor fornecedor;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compra")
+	private List<ItemCompra> listaCompra;
 	
 	public Compra() {
 		
@@ -63,6 +68,22 @@ public class Compra implements Serializable {
 	}
 	public void setDataCompra(Date dataCompra) {
 		this.dataCompra = dataCompra;
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+	public List<ItemCompra> getListaCompra() {
+		return listaCompra;
+	}
+
+	public void setListaCompra(List<ItemCompra> listaCompra) {
+		this.listaCompra = listaCompra;
 	}
 
 	public String toString() {

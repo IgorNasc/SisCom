@@ -8,25 +8,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sis.com.business.model.Compra;
-import com.sis.com.business.service.CompraService;
+import com.sis.com.business.model.Produto;
+import com.sis.com.business.service.ProdutoService;
 import com.sis.com.system.SisComException;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/compra")
-public class CompraRestController {
+@RequestMapping("/produto")
+public class ProdutoRestController {
 	
 	@Autowired
-	private CompraService compraService;
+	private ProdutoService produtoService;
 
-	@PostMapping("/fornecedor")
-	public RestOutput<Compra> compraFornecedor(@RequestBody RestInput<Compra> restInput){
-		
-		RestOutput<Compra> restOutput = new RestOutput<Compra>();
+	@PostMapping("/cadastrar")
+	public RestOutput<Produto> cadastrarProduto(@RequestBody RestInput<Produto> restInput){
+		RestOutput<Produto> restOutput = new RestOutput<Produto>();
 		
 		try {
-			compraService.compraFornecedor(restInput.getEntity());
+			produtoService.cadastrar(restInput.getEntity());
 			restOutput.setStatus(201);
 		} catch (SisComException e) {
 			restOutput.addWarn(e.getMenssagemErro());
@@ -38,13 +37,12 @@ public class CompraRestController {
 		return restOutput;
 	}
 
-	@DeleteMapping("/fornecedor/excluir")
-	public RestOutput<Compra> excluirCompra(@RequestBody RestInput<Compra> restInput){
-		
-		RestOutput<Compra> restOutput = new RestOutput<Compra>();
+	@DeleteMapping("/excluir")
+	public RestOutput<Produto> deletarProduto(@RequestBody RestInput<Produto> restInput){
+		RestOutput<Produto> restOutput = new RestOutput<Produto>();
 		
 		try {
-			compraService.excluirCompra(restInput.getEntity());
+			produtoService.cadastrar(restInput.getEntity());
 			restOutput.setStatus(201);
 		} catch (SisComException e) {
 			restOutput.addWarn(e.getMenssagemErro());

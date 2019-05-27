@@ -100,11 +100,13 @@ public class Produto implements Comparable<Produto> {
 	}
 	
 	public boolean adicionaQuantidade(int quant) {
+		this.estoque += quant;
+		
 		return true;
 	}
 	
 	public boolean decrementaQuantidade(int quant) {
-		// Caso n consiga decrementar retornar exception SisCOnEsception
+		this.estoque -= quant;
 		return true;
 	}
 

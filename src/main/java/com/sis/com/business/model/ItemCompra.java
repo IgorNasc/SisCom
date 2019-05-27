@@ -1,16 +1,17 @@
 package com.sis.com.business.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "item_compra")
 public class ItemCompra {
 	
 	@Id
@@ -25,9 +26,9 @@ public class ItemCompra {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_produto")
 	private Produto produto;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
-	private List<ItemVenda> listaVenda;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_compra")
+	private Compra compra;
 	
 	public ItemCompra(Produto produto, int quantCompra, double valorCompra) {
 		super();
@@ -55,6 +56,22 @@ public class ItemCompra {
 	}
 	public void setValorCompra(double valorCompra) {
 		this.valorCompra = valorCompra;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+
+	public Compra getCompra() {
+		return compra;
+	}
+
+	public void setCompra(Compra compra) {
+		this.compra = compra;
 	}
 
 	public String toString() {

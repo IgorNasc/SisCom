@@ -1,5 +1,6 @@
 package com.sis.com.business.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class FornecedorService {
 			throw new SisComException("Este fornecedor com o CNPJ: " + fornecedor.getCnpj() + ", já está cadastrado");
 		}
 
+		fornecedor.setDataCad(new Date());
 		fornecedorRepository.save(fornecedor);
 	}
 	

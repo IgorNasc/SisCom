@@ -22,6 +22,7 @@ public class Fornecedor extends Pessoa {
 	private String cnpj;
 	@Column(name = "nome_contato", nullable = false)
 	private String nomeContato;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fornecedor")
     private List<Compra> compras;
 	

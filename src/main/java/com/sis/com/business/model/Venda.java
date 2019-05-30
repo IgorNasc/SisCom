@@ -34,10 +34,10 @@ public class Venda implements Serializable {
 	private Date dataVenda;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo_cliente")
+    @JoinColumn(name = "cpf_cliente")
 	private Cliente cliente;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo_vendedor")
+    @JoinColumn(name = "cpf_vendedor")
 	private Vendedor vendedor;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")

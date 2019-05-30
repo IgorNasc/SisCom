@@ -1,5 +1,8 @@
 package com.sis.com.business.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,10 @@ public class ClienteService {
 	
 	@Autowired
 	private VendaRepository vendaRepository;
+
+	public List<Cliente> findAll() {
+		return clienteRepository.findAll();
+	}
 	
 	public void cadastrarCliente(Cliente cliente) throws SisComException {
 		Cliente verificaCliente = clienteRepository.FindByCpf(cliente.getCpf());
@@ -25,17 +32,18 @@ public class ClienteService {
 			throw new SisComException("Este cliente com o cpf: "+ cliente.getCpf() +", já está cadastrado!");
 		}
 		
+		cliente.setDataCad(new Date());
 		clienteRepository.save(cliente);
 	}
 	
-	public void delete(Cliente cliente) throws SisComException{
+	public void delete(Long codigo) throws SisComException{
 		
-		Venda checkVenda = vendaRepository.findByCliente(cliente.getCodigo());
+		Venda checkVenda = vendaRepository.findByCliente(codigo);
 		
 		if(checkVenda != null) {
 			throw new SisComException("Este cliente possui venda!");
 		}
 		
-		clienteRepository.delete(cliente);
+		clienteRepository.deleteById(codigo);
 	}
 }

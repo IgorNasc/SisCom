@@ -36,14 +36,14 @@ public class FornecedorService {
 		fornecedorRepository.save(fornecedor);
 	}
 	
-	public void delete(Fornecedor fornecedor) throws SisComException{
+	public void delete(Long codigo) throws SisComException{
 		
-		Compra checkCompra = compraRepository.findByCodigoFornecedor(fornecedor.getCodigo());
+		Compra checkCompra = compraRepository.findByCodigoFornecedor(codigo);
 		
 		if(checkCompra != null) {
 			throw new SisComException("Este fornecedor possui compras!");
 		}
 		
-		fornecedorRepository.delete(fornecedor);
+		fornecedorRepository.deleteById(codigo);
 	}
 }

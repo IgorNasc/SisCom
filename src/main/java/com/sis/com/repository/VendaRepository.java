@@ -9,9 +9,9 @@ import com.sis.com.business.model.Venda;
 @Repository
 public interface VendaRepository extends JpaRepository<Venda, Long> {
 	
-	@Query("SELECT v FROM Venda v where codigo_cliente = ?1")
+	@Query("SELECT v FROM Venda v where cpf_cliente = '?1'")
 	public Venda findByCliente(Long codigoCliente);
 	
-	@Query("SELECT v FROM Vendedor v where codigo_vendedor = ?1")
+	@Query("SELECT v FROM Vendedor v where cpd_vendedor = '?1'")
 	public Venda findByVendedor(Long codigoVendedor);
 }

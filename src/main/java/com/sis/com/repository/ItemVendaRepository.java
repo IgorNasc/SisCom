@@ -10,5 +10,5 @@ import com.sis.com.business.model.ItemVenda;
 public interface ItemVendaRepository extends JpaRepository<ItemVenda, Long> {
 
 	@Query("SELECT iv FROM ItemVenda iv where codigo_produto = ?1")
-	public boolean findByProduto(Long codigoProduto);
+	public ItemVenda findByProduto(Long codigoProduto);
 }

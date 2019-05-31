@@ -1,9 +1,15 @@
 package com.sis.com.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestOutput<T> {
+public class RestOutput<T> implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@SuppressWarnings("unused")
 	private List<T> listEntity;
 	private List<String> listError;

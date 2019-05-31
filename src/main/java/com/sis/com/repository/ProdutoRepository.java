@@ -18,6 +18,6 @@ import com.sis.com.business.model.Produto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-	@Query("SELECT p FROM Produto p where p.estoque < p.estoque_minimo")
+	@Query("SELECT p FROM Produto p where p.estoque < p.estoqueMinimo")
 	public List<Produto> findEstoqueLessThenMinimo();
 }

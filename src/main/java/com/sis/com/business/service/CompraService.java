@@ -1,5 +1,8 @@
 package com.sis.com.business.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +25,15 @@ public class CompraService {
 	
 	@Autowired
 	private ItemCompraRepository itemCompraRepository;
+
+	public List<Compra> findAll() {
+		List<Compra> teste =compraRepository.findAll(); 
+		
+		return teste;
+	}
 	
 	public void compraFornecedor(Compra compra) throws SisComException {
+		compra.setDataCompra(new Date());
 		Compra newCompra = compraRepository.save(compra);
 		
 		for (ItemCompra itemCompra : compra.getListaCompra()) {
@@ -43,8 +53,10 @@ public class CompraService {
 		}
 	}
 	
-	public void excluirCompra(Compra compra) throws SisComException {
-		compraRepository.delete(compra);
+	public void excluirCompra(Long codigo) throws SisComException {
+		Compra compra = compraRepository.getOne(codigo);
+		
+		compraRepository.deleteById(codigo);
 		
 		for (ItemCompra itemCompra : compra.getListaCompra()) {
 			itemCompra.setCompra(compra);

@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "item_venda")
 public class ItemVenda implements Serializable {
@@ -21,6 +24,7 @@ public class ItemVenda implements Serializable {
 	@Id
 	@Column(name="codigo")
 	private Long codigo;
+
 	@Column(name="quant_venda")
 	private int quantVenda;
 	@Column(name="valor_venda")
@@ -71,6 +75,13 @@ public class ItemVenda implements Serializable {
 	}
 	public void setVenda(Venda venda) {
 		this.venda = venda;
+	}
+	
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String toString() {

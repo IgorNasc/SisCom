@@ -1,5 +1,7 @@
 package com.sis.com.business.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,9 +12,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "item_compra")
-public class ItemCompra {
+public class ItemCompra implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,6 +39,10 @@ public class ItemCompra {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_compra")
 	private Compra compra;
+	
+	public ItemCompra() {
+		
+	}
 	
 	public ItemCompra(Produto produto, int quantCompra, double valorCompra) {
 		super();

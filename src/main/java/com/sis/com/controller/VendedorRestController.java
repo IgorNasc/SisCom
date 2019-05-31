@@ -3,6 +3,8 @@ package com.sis.com.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +21,19 @@ public class VendedorRestController {
 	
 	@Autowired
 	private VendedorService vendedorService;
+	
+	@GetMapping("/findAll")
+	public RestOutput<Vendedor> findAllVendedor(){
+		RestOutput<Vendedor> restOutput = new RestOutput<Vendedor>();
+		
+		try {
+			restOutput.setListEntity(vendedorService.findAll());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return restOutput;
+	}
 	
 	@PostMapping("/cadastrar")
 	public RestOutput<Vendedor> cadastrarVendedor(@RequestBody RestInput<Vendedor> restInput){
@@ -39,12 +54,12 @@ public class VendedorRestController {
 		return restOutput;
 	}
 	
-	@DeleteMapping("/delete")
-	public RestOutput<Vendedor> deleteVendedor(@RequestBody RestInput<Vendedor> restInput){
+	@DeleteMapping("/delete/{codigo}")
+	public RestOutput<Vendedor> deleteVendedor(@PathVariable("codigo") Long codigo){
 		RestOutput<Vendedor> restOutput = new RestOutput<Vendedor>();
 		
 		try {
-			vendedorService.delete(restInput.getEntity());
+			vendedorService.delete(codigo);
 			restOutput.setStatus(201);
 		} catch (SisComException e) {
 			restOutput.addWarn(e.getMenssagemErro());

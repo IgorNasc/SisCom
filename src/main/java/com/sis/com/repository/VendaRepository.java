@@ -12,6 +12,6 @@ public interface VendaRepository extends JpaRepository<Venda, Long> {
 	@Query("SELECT v FROM Venda v where cpf_cliente = '?1'")
 	public Venda findByCliente(Long codigoCliente);
 	
-	@Query("SELECT v FROM Vendedor v where cpd_vendedor = '?1'")
+	@Query("SELECT v FROM Venda v where cpf_vendedor = '?1'")
 	public Venda findByVendedor(Long codigoVendedor);
 }

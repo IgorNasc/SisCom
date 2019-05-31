@@ -1,5 +1,6 @@
 package com.sis.com.business.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,9 +13,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "produto")
-public class Produto implements Comparable<Produto> {
+public class Produto implements Comparable<Produto>, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -99,6 +108,22 @@ public class Produto implements Comparable<Produto> {
 		this.dataCad = dataCad;
 	}
 	
+	public List<ItemVenda> getVendas() {
+		return vendas;
+	}
+
+	public void setVendas(List<ItemVenda> vendas) {
+		this.vendas = vendas;
+	}
+
+	public List<ItemCompra> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(List<ItemCompra> compras) {
+		this.compras = compras;
+	}
+
 	public boolean adicionaQuantidade(int quant) {
 		this.estoque += quant;
 		

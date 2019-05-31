@@ -1,5 +1,8 @@
 package com.sis.com.business.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,10 @@ public class VendedorService {
 	
 	@Autowired
 	private VendaRepository vendaRepository;
+
+	public List<Vendedor> findAll() {
+		return vendedorRepository.findAll();
+	}
 	
 	public void cadastrarVendedor(Vendedor vendedor) throws SisComException {
 		Vendedor validaVendedor = vendedorRepository.findByCpf(vendedor.getCpf());
@@ -26,18 +33,19 @@ public class VendedorService {
 		} else if(vendedor.getMetaMensal() <= 0) {
 			throw new SisComException("O vendedor precisa ter uma meta mensal maior que 0(zero)!");
 		} else {
+			vendedor.setDataCad(new Date());
 			vendedorRepository.save(vendedor);
 		}
 	}
 	
-	public void delete(Vendedor vendedor) throws SisComException{
+	public void delete(Long codigo) throws SisComException{
 		
-		Venda checkVenda = vendaRepository.findByVendedor(vendedor.getCodigo());
+		Venda checkVenda = vendaRepository.findByVendedor(codigo);
 		
 		if(checkVenda != null) {
 			throw new SisComException("Este vendedor possui venda!");
 		}
 		
-		vendedorRepository.delete(vendedor);
+		vendedorRepository.deleteById(codigo);
 	}
 }

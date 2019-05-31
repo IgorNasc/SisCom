@@ -23,7 +23,7 @@ public class ClienteRestController {
 	private ClienteService clienteService;
 	
 	@GetMapping("/findAll")
-	public RestOutput<Cliente> findAllFornecedor(){
+	public RestOutput<Cliente> findAllVendedor(){
 		RestOutput<Cliente> restOutput = new RestOutput<Cliente>();
 		
 		try {

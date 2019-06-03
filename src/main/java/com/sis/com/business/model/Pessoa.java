@@ -12,8 +12,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /***
  * 
  * @author igor
@@ -21,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * 
  */
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)

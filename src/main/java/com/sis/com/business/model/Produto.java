@@ -10,12 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "produto")
 public class Produto implements Comparable<Produto>, Serializable {
@@ -40,10 +39,12 @@ public class Produto implements Comparable<Produto>, Serializable {
 	@Column(name="data_cad")
 	private Date dataCad;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	@JsonIgnore
     private List<ItemVenda> vendas;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "produto")
+	@JsonIgnore
     private List<ItemCompra> compras;
 	
 	public Produto() {
@@ -51,7 +52,6 @@ public class Produto implements Comparable<Produto>, Serializable {
 	}
 	
 	public Produto(Long codigo, String nome, double precoUnitario, int estoque, int estoqueMinimo, Date dataCad) {
-		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.precoUnitario = precoUnitario;

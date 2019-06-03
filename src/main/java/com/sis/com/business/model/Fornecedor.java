@@ -9,11 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "fornecedor")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Fornecedor extends Pessoa {
 	/**
 	 * 
@@ -25,10 +26,29 @@ public class Fornecedor extends Pessoa {
 	private String cnpj;
 	@Column(name = "nome_contato", nullable = false)
 	private String nomeContato;
+	@Column(name = "codigo", nullable = false)
+	private Long codigo;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "fornecedor")
+	@JsonIgnore
     private List<Compra> compras;
 	
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+	public List<Compra> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(List<Compra> compras) {
+		this.compras = compras;
+	}
+
 	// Constructors
 	public Fornecedor() {
 		

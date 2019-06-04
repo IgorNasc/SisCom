@@ -16,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "compra")
 public class Compra implements Serializable {
@@ -39,7 +37,6 @@ public class Compra implements Serializable {
 	private Fornecedor fornecedor;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "compra")
-	@JsonIgnore
 	private List<ItemCompra> listaCompra;
 	
 	public Compra() {

@@ -16,9 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "venda")
 public class Venda implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -34,13 +37,14 @@ public class Venda implements Serializable {
 	private Date dataVenda;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cpf_cliente")
+    @JoinColumn(name = "codigo_cliente")
 	private Cliente cliente;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cpf_vendedor")
+    @JoinColumn(name = "codigo_vendedor")
 	private Vendedor vendedor;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
+	@JsonIgnore
 	private List<ItemVenda> listaVenda;
 	
 	public Venda() {
@@ -57,6 +61,13 @@ public class Venda implements Serializable {
 		this.dataVenda=dataVenda;
 	}
 
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public Long getNumVenda() {
 		return codigo;
 	}

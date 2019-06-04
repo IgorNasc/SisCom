@@ -126,7 +126,6 @@ public class Produto implements Comparable<Produto>, Serializable {
 
 	public boolean adicionaQuantidade(int quant) {
 		this.estoque += quant;
-		
 		return true;
 	}
 	

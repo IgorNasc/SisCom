@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ public class ItemVenda implements Serializable {
 	private static final long serialVersionUID = 1L;
 			
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="codigo")
 	private Long codigo;
 
@@ -27,7 +30,7 @@ public class ItemVenda implements Serializable {
 	@Column(name="valor_venda")
 	private double valorVenda;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
     @JoinColumn(name = "codigo_produto")
 	private Produto produto;
 	@ManyToOne(fetch = FetchType.LAZY)

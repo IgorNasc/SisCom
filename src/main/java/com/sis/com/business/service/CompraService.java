@@ -37,8 +37,6 @@ public class CompraService {
 		Compra newCompra = compraRepository.save(compra);
 		
 		for (ItemCompra itemCompra : compra.getListaCompra()) {
-			itemCompra.setCompra(newCompra);
-			
 			Produto produto = produtoRepository.getOne(itemCompra.getProduto().getCodigo());
 			
 			if(produto == null) {
@@ -46,8 +44,10 @@ public class CompraService {
 			}
 			
 			produto.adicionaQuantidade(itemCompra.getQuantCompra());
-			
 			produtoRepository.save(produto);
+			
+			
+			itemCompra.setCompra(newCompra);
 			
 			itemCompraRepository.save(itemCompra);
 		}
@@ -55,8 +55,6 @@ public class CompraService {
 	
 	public void excluirCompra(Long codigo) throws SisComException {
 		Compra compra = compraRepository.getOne(codigo);
-		
-		compraRepository.deleteById(codigo);
 		
 		for (ItemCompra itemCompra : compra.getListaCompra()) {
 			itemCompra.setCompra(compra);
@@ -73,5 +71,7 @@ public class CompraService {
 			
 			itemCompraRepository.delete(itemCompra);
 		}
+		
+		compraRepository.deleteById(codigo);
 	}
 }

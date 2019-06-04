@@ -9,8 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "cliente")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente extends Pessoa {
 	/**
 	 * 
@@ -24,6 +28,7 @@ public class Cliente extends Pessoa {
 	private double limiteCredito;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+	@JsonIgnore
     private List<Venda> vendas;
 	
 	// Constructors

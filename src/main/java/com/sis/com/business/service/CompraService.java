@@ -48,6 +48,7 @@ public class CompraService {
 			
 			
 			itemCompra.setCompra(newCompra);
+			itemCompra.setValorCompra(produto.getPrecoUnitario() * itemCompra.getQuantCompra());
 			
 			itemCompraRepository.save(itemCompra);
 		}

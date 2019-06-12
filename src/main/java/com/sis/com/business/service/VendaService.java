@@ -45,6 +45,9 @@ public class VendaService {
 			produtoRepository.save(produto);
 			
 			itemVenda.setVenda(newVenda);
+			
+			itemVenda.setValorVenda(produto.getPrecoUnitario() * itemVenda.getQuantVenda());
+			
 			itemVendaRepository.save(itemVenda);
 		}
 	}

@@ -44,7 +44,6 @@ public class Venda implements Serializable {
 	private Vendedor vendedor;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda")
-	@JsonIgnore
 	private List<ItemVenda> listaVenda;
 	
 	public Venda() {

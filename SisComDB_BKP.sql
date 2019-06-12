@@ -5,7 +5,7 @@
 -- Dumped from database version 11.3
 -- Dumped by pg_dump version 11.3
 
--- Started on 2019-06-11 18:40:46
+-- Started on 2019-06-12 14:09:36
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -271,8 +271,8 @@ ALTER TABLE public.vendedor OWNER TO postgres;
 --
 
 COPY public.cliente (cpf, limite_credito, codigo) FROM stdin;
-1	1	25
-2	2	26
+15478625635	500	41
+15875632535	900	42
 \.
 
 
@@ -283,8 +283,8 @@ COPY public.cliente (cpf, limite_credito, codigo) FROM stdin;
 --
 
 COPY public.compra (codigo, data_compra, codigo_fornecedor) FROM stdin;
-8	2019-06-04	19
-13	2019-06-04	20
+14	2019-06-12	37
+16	2019-06-12	37
 \.
 
 
@@ -295,8 +295,7 @@ COPY public.compra (codigo, data_compra, codigo_fornecedor) FROM stdin;
 --
 
 COPY public.fornecedor (cnpj, nome_contato, codigo) FROM stdin;
-79257687000103	CEO Logitech	19
-75521401000196	CEO Dell	20
+54130750000107	Sr. Heineken	37
 \.
 
 
@@ -307,8 +306,8 @@ COPY public.fornecedor (cnpj, nome_contato, codigo) FROM stdin;
 --
 
 COPY public.item_compra (codigo, quant_compra, valor_compra, codigo_produto, codigo_compra) FROM stdin;
-2	5	0.00	3	8
-5	2	0.00	4	13
+6	10	33.00	8	14
+8	20	66.00	8	16
 \.
 
 
@@ -319,7 +318,9 @@ COPY public.item_compra (codigo, quant_compra, valor_compra, codigo_produto, cod
 --
 
 COPY public.item_venda (codigo, quant_venda, valor_venda, codigo_produto, codigo_venda) FROM stdin;
-1	5	0.00	4	4
+3	5	16.50	8	9
+4	1	20.00	9	9
+5	2	40.00	7	10
 \.
 
 
@@ -330,12 +331,11 @@ COPY public.item_venda (codigo, quant_venda, valor_venda, codigo_produto, codigo
 --
 
 COPY public.pessoa (codigo, nome, telefones, email, data_cad) FROM stdin;
-19	Logitech	31999999999	logitech@gmail.com	2019-05-29
-20	Dell	31888888888	dell@gmail.com	2019-05-29
-25	1	1	1	2019-05-30
-26	2	2	2	2019-05-30
-28	5	5	5	\N
-29	6	6	6	2019-05-31
+32	Castro	31965522325	castrao@gmail.com	2019-06-12
+37	Heineken	31925642827	heineken@gmail.com	2019-06-12
+41	Julio	31965256324	julio@gmail.com	2019-06-12
+42	Clara	31964752125	clara@gmail.com	2019-06-12
+43	Luiz	31965254126	luiz@gmail.com	2019-06-12
 \.
 
 
@@ -346,10 +346,9 @@ COPY public.pessoa (codigo, nome, telefones, email, data_cad) FROM stdin;
 --
 
 COPY public.produto (codigo, nome, preco_unitario, estoque, estoque_minimo, data_cad) FROM stdin;
-3	Carteira	15	18	5	2019-05-30
-5	Caneta	2	120	150	2019-05-30
-4	Châ	8	47	20	2019-05-30
-6	teste	10	10	2	2019-06-04
+8	Cerveja Heineken Premium Long Neck 330 ml	3.29999999999999982	75	20	2019-06-12
+9	Blusa Verde	20	14	20	2019-06-12
+7	Blusa Azul	20	58	15	2019-06-12
 \.
 
 
@@ -360,10 +359,8 @@ COPY public.produto (codigo, nome, preco_unitario, estoque, estoque_minimo, data
 --
 
 COPY public.venda (codigo, forma_pagto, data_venda, codigo_vendedor, codigo_cliente) FROM stdin;
-1	1	2019-06-04	28	25
-2	1	2019-06-04	28	25
-3	1	2019-06-04	28	25
-4	1	2019-06-04	28	25
+9	3	2019-06-12	32	42
+10	2	2019-06-12	43	41
 \.
 
 
@@ -374,8 +371,8 @@ COPY public.venda (codigo, forma_pagto, data_venda, codigo_vendedor, codigo_clie
 --
 
 COPY public.vendedor (cpf, meta_mensal, codigo) FROM stdin;
-5	5	28
-6	6	29
+25657425635	100	32
+25487526535	400	43
 \.
 
 
@@ -385,7 +382,7 @@ COPY public.vendedor (cpf, meta_mensal, codigo) FROM stdin;
 -- Name: compra_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.compra_codigo_seq', 13, true);
+SELECT pg_catalog.setval('public.compra_codigo_seq', 16, true);
 
 
 --
@@ -403,7 +400,7 @@ SELECT pg_catalog.setval('public.hibernate_sequence', 2, true);
 -- Name: item_compra_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.item_compra_codigo_seq', 5, true);
+SELECT pg_catalog.setval('public.item_compra_codigo_seq', 8, true);
 
 
 --
@@ -412,7 +409,7 @@ SELECT pg_catalog.setval('public.item_compra_codigo_seq', 5, true);
 -- Name: item_venda_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.item_venda_codigo_seq', 1, true);
+SELECT pg_catalog.setval('public.item_venda_codigo_seq', 5, true);
 
 
 --
@@ -421,7 +418,7 @@ SELECT pg_catalog.setval('public.item_venda_codigo_seq', 1, true);
 -- Name: pessoa_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pessoa_codigo_seq', 29, true);
+SELECT pg_catalog.setval('public.pessoa_codigo_seq', 43, true);
 
 
 --
@@ -430,7 +427,7 @@ SELECT pg_catalog.setval('public.pessoa_codigo_seq', 29, true);
 -- Name: produto_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.produto_codigo_seq', 6, true);
+SELECT pg_catalog.setval('public.produto_codigo_seq', 9, true);
 
 
 --
@@ -439,7 +436,7 @@ SELECT pg_catalog.setval('public.produto_codigo_seq', 6, true);
 -- Name: venda_codigo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.venda_codigo_seq', 5, true);
+SELECT pg_catalog.setval('public.venda_codigo_seq', 10, true);
 
 
 --
@@ -747,7 +744,7 @@ GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.vendedor TO siscom;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT SELECT,INSERT,DELETE,UPDATE ON TABLES  TO siscom;
 
 
--- Completed on 2019-06-11 18:40:46
+-- Completed on 2019-06-12 14:09:36
 
 --
 -- PostgreSQL database dump complete
